@@ -172,6 +172,52 @@ def slot_machine(bet):
     print(f"{slot1} {slot2} {slot3},  {bet}")
 ...
 
+def pig_dice(threshold):
+    # Generating Dice
+    diceTotal = 0
+    roll1 = []
+    roll2 = []
+
+    for x in range(10000):
+        dice1 = random.randint(1, 6)
+        dice2 = random.randint(1, 6)
+        diceTotal = diceTotal + dice1 + dice2
+        roll1 += [dice1]
+        roll2 += [dice2]
+
+        if dice1 == 1 or dice2 == 1:
+            if dice1 == 1 and dice2 == 1:
+                status = "Catastrophic Loss"
+                diceTotal = -1
+                break
+            else:
+                status = "Loss"
+                diceTotal = 0
+                break
+        elif diceTotal >= threshold:
+            status = "Win"
+            break
+        elif diceTotal < threshold:
+            status = "Proceed"
+            continue
+        else:
+            print("invalid")
+            break
+        ...
+    ...
+
+    # Generating Output
+    print("Rolls:", end=" ")
+    for i in range(len(roll1)):
+        print(f"({roll1[i]}, {roll2[i]}),", end=" ")
+    if status == "Win":
+        print(f"{status}, ({diceTotal} points).")
+    else:
+        print(status)
+    ...
+
+    # Points Return
+    print(f"Points: {diceTotal}.")
 
 '''                           --- Start of Code ---                            '''
 
@@ -207,6 +253,7 @@ move3 = input("Thank you! Lastly, please choose a direction for round 3: ")
 
 # Deriving 1
 look_away(move1, move2, move3)
+time.sleep(2)
 
 # Game 2 Message
 print("Time for the SECOND game! Slot Machine! Here are the rules: \n"
@@ -222,3 +269,24 @@ time.sleep(0.7)
 
 # Deriving 2
 slot_machine(bet)
+time.sleep(2)
+
+# Game 3 Message
+print("It's about time we start with the FINAL boss. This is a risk-it-all game,\n"
+      "so be prepared! The rules to the game can't be any simpler:\n"
+      "You choose a threshold. A couple of dice are rolled repeatedly and \n"
+      "added together. The game ends when; the added value increases beyond \n"
+      "the threshold, this is where you win; a 1 is rolled, this is where you lose; \n"
+      "or two 1s are rolled, this is where you catastrophically lose.")
+
+# Starting Final Game
+threshold = int(input("Please choose a threshold for the final game: "))
+for i in ("tHaNnk =oU FOr ThE t_rEshOLd"):
+    print(i, end="")
+    time.sleep(0.25)
+for i in ("\nGoOd l_uCk!!?!??"):
+    print(i, end="")
+    time.sleep(0.25)
+
+# Deriving
+pig_dice(threshold)
