@@ -1,7 +1,7 @@
 # imports
 import random
 
-# Slot Machine Function
+# Look away function
 def slot_machine(bet):
     # Randomizing slots
     slot1 = random.randint(1, 4)
@@ -59,6 +59,3 @@ def slot_machine(bet):
         bet = 0
 
     print(f"{slot1} {slot2} {slot3},  {bet}")
-...
-
-slot_machine(30)
