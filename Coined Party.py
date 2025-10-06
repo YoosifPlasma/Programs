@@ -2,13 +2,14 @@
 import random
 import sys
 import time
+import os
 
 # Variables
 coins = 0
-presence = "games_lounge"     #
+presence = "games_lounge"     # Variable that sets presence to games_lounge so no errors can occur
 x = 0     # Variable that makes something happen only the first time the code is run
 
-# Functions
+'''   -------------------------------- Functions --------------------------------   '''
 
 # Function that determines location based off user input
 def whereTo():
@@ -74,15 +75,42 @@ def games_lounge(name):
           f"\nWhat do you wish to play? Press 1 for Look away, "
           f"\npress 2 for Slot Machine, press 3 for Pig. "
           f"\nTo view rules for each game, choose the game, "
-          f"\nand there'll be an option to head back to the games lounge: ")
+          f"\nand there'll be an option to head back to the games lounge."
+          f"\nIf you wish to quit the game, press Q,"
+          f"\nto restart the game, press R: ")
 
-    # deciding which game to go to based off user input
+    # Deciding which game to go to based off user input
     if selectedGame == "1":
         look_away_rules()
     elif selectedGame == "2":
         slot_machine_rules()
     elif selectedGame == "3":
         pig_dice_rules()
+
+    # Exiting game
+    elif selectedGame == "q" or selectedGame == "Q":
+        areYouSure = input("Are you sure you want to exit the game? "
+                           "\nYou will lose all your progress. (Y/N) ")
+        if areYouSure == "Y":
+            print("\n\n...Quitting program...")
+            time.sleep(2)
+            print("\n\nThanks for playing! 👋")
+            time.sleep(1)
+            sys.exit()
+        elif areYouSure == "N":
+            games_lounge(name)
+
+    # Restarting game
+    elif selectedGame == "r" or selectedGame == "R":
+        areYouSure = input("Are you sure you want to restart the game? "
+                           "\nYou will lose all your progress. (Y/N) ")
+        if areYouSure == "Y":
+            print("\n\n...Restarting program...")
+            time.sleep(1)
+            os.execl(sys.executable, sys.executable, *sys.argv)
+        elif areYouSure == "N":
+            games_lounge(name)
+
     # Punishing user for being stupid
     else:
         print(f"{selectedGame} does not exist, \n"
@@ -538,13 +566,12 @@ def pig_dice(threshold):
 
 # Signature function
 def printSignature():
-    name = "Yoosif Alquwatly"
+    signatureName = "Yoosif Alquwatly"
     program = "Engineering 1 | McMaster University"
-    print(f"{name} \n"
+    print(f"{signatureName} \n"
           f"{program} \n"
           f"\n\n")
 ...
-
 
 '''   ---------------------------------- Code ----------------------------------   '''
 # Signature
@@ -561,8 +588,18 @@ print("Welcome to Coined Party! \n"
       "\n\n")
 ...
 
-# Asking user for personal information, so I can access their bank account
-name = input("Firstly, please enter your name: ")
+# Only activates code when it's the main file; not when imported
+if __name__ == "__main__":
+    try:
+        # Asking user for personal information, so I can access their bank account
+        name = input("Firstly, please enter your name: ")
 
-# Booting up the game
-games_lounge(name)
+        # Booting up the game
+        games_lounge(name)
+
+    # Removing error when user ends program
+    except KeyboardInterrupt:
+        print("\n\n...Quitting program...")
+        time.sleep(2)
+        print("\n\nThanks for playing! 👋")
+        time.sleep(1)
