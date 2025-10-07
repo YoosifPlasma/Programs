@@ -40,3 +40,6 @@ Before starting the game, you're asked to set a threshold. Upon rolling, if you 
 
 Anyway, leave me alone. I need to go code graphics (     learn from scratch : = )    )
 I need mario bankrupt.
+
+
+Note - I've added so many jokes in the code. Please, go throught the code and find these easter eggs. I don't wanna feel lonely 🙏
