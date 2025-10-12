@@ -1,4 +1,0 @@
-([('Coined Party',
-   '/Users/yoosifalquwatly/Documents/myFiles/Programs/Python/Projects/dist/Coined '
-   'Party',
-   'EXECUTABLE')],)
